@@ -11,11 +11,11 @@ namespace ArbitApi.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class NotificationsController : ControllerBase
+    public class ClimaController : ControllerBase
 
     {
         private readonly IClimasServices _climaServices;
-        public NotificationsController(IClimasServices climaServices)
+        public ClimaController(IClimasServices climaServices)
         {
             _climaServices = climaServices;
         }
