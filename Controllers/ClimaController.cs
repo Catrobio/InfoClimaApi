@@ -23,14 +23,14 @@ namespace ArbitApi.Controllers
         //#region GET
         [HttpGet()]
         // [Authorize]
-        public async Task<IActionResult> GetClimas(string Ciudad, bool historico)
+        public async Task<IActionResult> GetClimas([FromQuery] string Ciudad, [FromQuery]  bool historico)
         {
             return Ok(await _climaServices.GetInfoClimas(Ciudad, historico));
         }
 
         [HttpPost()]
         // [Authorize]
-        public async Task<IActionResult> SetClimas(dynamic jsonClimaResult)
+        public async Task<IActionResult> SetClimas([FromBody]  dynamic jsonClimaResult)
         {
             return Ok(await _climaServices.SetInfoClima(jsonClimaResult));
         }
