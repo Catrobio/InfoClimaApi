@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
+using InfoClimaApi.Mappers;
 
 namespace InfoClimaApi
 {
@@ -35,6 +37,7 @@ namespace InfoClimaApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InfoClimaApi", Version = "v1" });
             });
+            services.AddAutoMapper(typeof(ClimasMapping)).Reverse();
             services.AddDbContext<InfoClimaContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IClimasServices, ClimasServices>();

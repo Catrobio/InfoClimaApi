@@ -20,20 +20,28 @@ namespace ArbitApi.Controllers
             _climaServices = climaServices;
         }
 
-        //#region GET
+        #region GET
+        //Devuelve el registro de clima
         [HttpGet()]
-        // [Authorize]
-        public async Task<IActionResult> GetClimas([FromQuery] string Ciudad, [FromQuery]  bool historico)
+        public async Task<IActionResult> GetClimas([FromQuery] string Ciudad, [FromQuery] bool historico)
         {
             return Ok(await _climaServices.GetInfoClimas(Ciudad, historico));
         }
+        //Devuelve las ciudades
+        [HttpGet("Ciudades")]
+        public async Task<IActionResult> GetCiudades()
+        {
+            return Ok(await _climaServices.GetCiudades());
+        }
+        #endregion
 
-        [HttpPost()]
-        // [Authorize]
-        public async Task<IActionResult> SetClimas([FromBody]  dynamic jsonClimaResult)
+        #region POST
+        //Guarda un clima y ciudad nueva segun lo que devuelva la api de openweather
+        [HttpPost()]        
+        public async Task<IActionResult> SetClimas([FromBody] dynamic jsonClimaResult)
         {
             return Ok(await _climaServices.SetInfoClima(jsonClimaResult));
         }
-    
+        #endregion
     }
 }
